@@ -1,10 +1,17 @@
--- server/weapons.lua
+-- server/weapons.lua (expanded with request endpoint)
 
 -- Weapon shop + admin spawn endpoints
 local weaponsForSale = {
   { name = 'weapon_pistol', label = 'Pistol', price = 1500 },
+  { name = 'weapon_pistol_mk2', label = 'Pistol Mk2', price = 4500 },
   { name = 'weapon_assaultrifle', label = 'Assault Rifle', price = 25000 }
 }
+
+RegisterNetEvent('fivem_scaffold:requestWeapons')
+AddEventHandler('fivem_scaffold:requestWeapons', function()
+  local src = source
+  TriggerClientEvent('fivem_scaffold:returnWeapons', src, weaponsForSale)
+end)
 
 RegisterNetEvent('fivem_scaffold:buyWeapon')
 AddEventHandler('fivem_scaffold:buyWeapon', function(weaponName)

@@ -1,4 +1,4 @@
-// script.js (NUI)
+// script.js (NUI) — extended: support openStore already exists; add support for openWeapons and openDealer messages
 (function(){
   const panel = document.getElementById('adminPanel')
   const closeBtn = document.getElementById('closeBtn')
@@ -33,12 +33,26 @@
         const btn = document.createElement('button')
         btn.innerText = 'Buy'
         btn.addEventListener('click', ()=>{
-          fetch(`https://${GetParentResourceName()}/buyItem`, { method: 'POST', body: JSON.stringify({ storeId: store.id, itemName: item.name }) }).then(r=>r.json()).then(()=>{})
+          // detect if this store entry is a weapon (weapon names start with weapon_)
+          if(item.name.startsWith('weapon_')){
+            fetch(`https://${GetParentResourceName()}/buyWeapon`, { method: 'POST', body: JSON.stringify({ weaponName: item.name }) }).then(r=>r.json()).then(()=>{})
+          } else {
+            fetch(`https://${GetParentResourceName()}/buyItem`, { method: 'POST', body: JSON.stringify({ storeId: store.id, itemName: item.name }) }).then(r=>r.json()).then(()=>{})
+          }
         })
         el.appendChild(btn)
         body.appendChild(el)
       })
       storePanel.classList.remove('hidden')
+    } else if (data.action === 'openWeapons') {
+      // show weapons using same UI
+      const w = data.weapons || []
+      const store = { id: 'weapons', name: 'Weapon Shop', items: w.map(x=>({ name: x.name, label: x.label, price: x.price })) }
+      window.postMessage({ data: { action: 'openStore', store } }, '*')
+    } else if (data.action === 'openDealer') {
+      const d = data.dealer
+      const store = { id: d.id, name: d.name, items: d.stock.map(x=>({ name: x.model, label: x.label, price: x.price })) }
+      window.postMessage({ data: { action: 'openStore', store } }, '*')
     }
   });
 

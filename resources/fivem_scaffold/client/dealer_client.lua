@@ -1,9 +1,19 @@
--- client/dealer_client.lua
+-- client/dealer_client.lua (expanded to request dealer stock and open NUI)
 
 -- Simple command-based car dealer UI (placeholder). Use /cardealer to open.
 RegisterCommand('cardealer', function()
+  TriggerServerEvent('fivem_scaffold:requestDealer')
+end)
+
+RegisterNetEvent('fivem_scaffold:returnDealer')
+AddEventHandler('fivem_scaffold:returnDealer', function(dealer)
+  -- transform dealer into store shape understood by NUI
+  local store = { id = dealer.id, name = dealer.name, items = {} }
+  for _, v in ipairs(dealer.stock or {}) do
+    table.insert(store.items, { name = v.model, label = v.label, price = v.price })
+  end
   SetNuiFocus(true, true)
-  SendNUIMessage({ action = 'openDealer' })
+  SendNUIMessage({ action = 'openStore', store = store })
 end)
 
 -- Spawn purchased vehicle (client-side event called after purchase)
