@@ -3,15 +3,19 @@ fx_version 'cerulean'
 games { 'gta5' }
 
 author 'assistant-scaffold'
-description 'FREE-FIVEM-SERVER scaffold: controls, respawn, postal, admin NUI, anticheat, jobs, stores'
-version '0.2.0'
+description 'FREE-FIVEM-SERVER scaffold: controls, respawn, postal, admin NUI, anticheat, jobs, stores, dealer'
+version '0.3.0'
 
 shared_script 'config.lua'
 
 client_scripts {
   'client/main.lua',
   'client/controls.lua',
-  'client/admin.lua'
+  'client/admin.lua',
+  'client/dealer_client.lua',
+  'client/weapons_client.lua',
+  'client/emotes.lua',
+  'client/shop_client.lua'
 }
 
 server_scripts {
@@ -19,7 +23,11 @@ server_scripts {
   'server/main.lua',
   'server/admin.lua',
   'server/anticheat.lua',
-  'server/stores.lua'
+  'server/anticheat_hardened.lua',
+  'server/stores.lua',
+  'server/car_dealer.lua',
+  'server/weapons.lua',
+  'server/shop_npcs.lua'
 }
 
 ui_page 'html/index.html'

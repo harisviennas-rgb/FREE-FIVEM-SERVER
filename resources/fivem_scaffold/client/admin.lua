@@ -1,4 +1,4 @@
--- client/admin.lua
+-- client/admin.lua (updated with buyItem NUI callback)
 
 local QBCore = nil
 
@@ -19,6 +19,17 @@ end)
 RegisterNUICallback('adminAction', function(data, cb)
   -- data.action, data.target, data.payload
   TriggerServerEvent('fivem_scaffold:adminAction', data)
+  cb({ status = 'ok' })
+end)
+
+RegisterNUICallback('buyItem', function(data, cb)
+  -- data.storeId, data.itemName
+  TriggerServerEvent('fivem_scaffold:buyItem', data.storeId, data.itemName)
+  cb({ status = 'ok' })
+end)
+
+RegisterNUICallback('buyWeapon', function(data, cb)
+  TriggerServerEvent('fivem_scaffold:buyWeapon', data.weaponName)
   cb({ status = 'ok' })
 end)
 
