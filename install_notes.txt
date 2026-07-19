@@ -1,0 +1,9 @@
+-- Installer notes
+# This is a helper script to copy the scaffold into your server resources folder.
+# Usage (on the server machine):
+# 1. unzip this repository into a folder on the FXServer machine
+# 2. copy the `resources/fivem_scaffold` folder to your server resources directory
+# 3. add `ensure fivem_scaffold` to your server.cfg
+# 4. install QBCore and dependencies (see README)
+
+echo "Installer placeholder: follow README.md steps"

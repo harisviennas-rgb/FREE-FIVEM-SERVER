@@ -1,0 +1,17 @@
+# Sample server.cfg entries
+
+# Replace with your actual fxserver settings
+endpoint_add_tcp "0.0.0.0:30120"
+endpoint_add_udp "0.0.0.0:30120"
+
+# ensure core frameworks (install QBCore or ESX separately)
+# ensure qb-core
+
+# Scaffold resource
+ensure fivem_scaffold
+
+# Optional: ox_lib + ox_inventory
+# ensure ox_lib
+# ensure ox_inventory
+
+sv_scriptHookAllowed 0
