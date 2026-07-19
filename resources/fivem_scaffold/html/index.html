@@ -18,11 +18,48 @@
   </div>
 
   <div id="adminPanel" class="hidden">
-    <h1>Admin Panel (Black & Orange)</h1>
-    <div class="controls">
-      <button id="teleport">Teleport</button>
-      <button id="ban">Ban Player</button>
-      <!-- many more buttons will be added in future commits -->
+    <div class="panelHeader">
+      <img src="img/logo.png" id="panelLogo" />
+      <h1>Admin Panel</h1>
+      <button id="closeBtn">X</button>
+    </div>
+    <div class="panelBody">
+      <div class="section">
+        <h2>Player Management</h2>
+        <input id="targetId" placeholder="Player ID" />
+        <input id="reason" placeholder="Reason" />
+        <button data-action="kick">Kick</button>
+        <button data-action="ban">Ban</button>
+        <button data-action="tempban">Tempban (1h)</button>
+      </div>
+
+      <div class="section">
+        <h2>Economy</h2>
+        <input id="amount" placeholder="Amount" />
+        <button data-action="giveMoney">Give Money</button>
+      </div>
+
+      <div class="section">
+        <h2>Teleport / Spawn</h2>
+        <input id="coords" placeholder="x,y,z" />
+        <button data-action="teleport">Teleport Player</button>
+        <input id="vehicleModel" placeholder="Vehicle Model" />
+        <button data-action="spawnVehicle">Spawn Vehicle</button>
+      </div>
+
+      <div class="section">
+        <h2>Jobs</h2>
+        <input id="jobName" placeholder="job name" />
+        <input id="jobGrade" placeholder="grade" />
+        <button data-action="setJob">Set Job</button>
+      </div>
+
+      <div class="section">
+        <h2>Quick Actions</h2>
+        <button data-action="announce">Announce</button>
+        <button data-action="toggleAnticheat">Toggle Anticheat</button>
+      </div>
+
     </div>
   </div>
 
