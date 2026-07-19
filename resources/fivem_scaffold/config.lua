@@ -1,20 +1,23 @@
--- config.lua
-Config = {}
+-- config.lua additions
+Config = Config or {}
 
-Config.AdminSteamIDs = {
-  'steam:76561198673222869' -- your SteamID (prefixed with steam: for QBCore)
+-- Inventory integration
+Config.EnableInventoryIntegration = true -- set to false if you do not use ox_inventory/other
+
+-- Dealer settings
+Config.Dealer = {
+  defaultPriceMultiplier = 1.0,
+  persistenceTable = 'ff_server_player_vehicles'
 }
 
-Config.RespawnCooldown = 100 -- seconds
-Config.EnableAutoBan = false -- scaffold: must be configured
-
--- Keybinds
-Config.Keybinds = {
-  inventory = 288, -- F2
-  menu = 170,      -- F3
-  crouch = 20,     -- Z
-  respawn = 45     -- R
+-- Weapons/shop settings
+Config.Weapons = {
+  enableWeaponShop = true,
+  defaultAmmo = 250
 }
 
--- Postal settings
-Config.MaxPostal = 10000
+-- Anticheat tuning
+Config.AntiCheat = {
+  rpcLimitPerMinute = 200,
+  enableAutoBan = false -- keep conservative default
+}
